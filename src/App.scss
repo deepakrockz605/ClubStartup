@@ -3,20 +3,34 @@
 $primary-white-color: #fff;
 $primary-font-size: 14px;
 $none : none;
-$defaltMargin : 0;
-$defaltPadding : 0;
+$defaultMargin : 0;
+$defaultPadding : 0;
 $defaultColor : #4d4d4d;
 
 
 body {
   background: $primary-white-color;
   font-size: $primary-font-size;
-  color: $defaultColor
+  color: $defaultColor;
 }
 
-a {text-decoration: $none}
-p{font-size: $primary-font-size;padding: $defaltPadding;margin: $defaltMargin}
-label{margin:$defaltMargin }
-ul , li {margin: $defaltMargin;padding: $defaltPadding}
+a {
+  text-decoration: $none;
+}
+
+p {
+  font-size: $primary-font-size;
+  padding: $defaultPadding;
+  margin: $defaultMargin;
+}
+
+label {
+  margin: $defaultMargin;
+}
+
+ul , li {
+  margin: $defaultMargin;
+  padding: $defaultPadding;
+}
 
 /* Global CSS Ends Here */

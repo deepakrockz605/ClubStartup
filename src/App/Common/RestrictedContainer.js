@@ -2,7 +2,7 @@ import React from 'react'
 import {Route , Switch } from 'react-router-dom';
 import Home from '../Components/Home'
 import Test from '../Components/Test'
-import PageNotFound from '../Common/PageNotFound'
+import PageNotFound from './PageNotFound'
 
 function RestrictedContainer() {
     return (
