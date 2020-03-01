@@ -1,76 +1,84 @@
-$flex : flex;
-$align-items-center : center;
-$relative : relative;
+$flex: flex;
+$align-items-center: center;
+$relative: relative;
 
 .HomeWrapper {
-    background: url('../Images/banner-background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width:100%;
+  background: url("../Images/banner-background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+
+  .homeBanner {
+    display: $flex;
+    align-items: $align-items-center;
+    position: $relative;
     height: 100vh;
-    overflow: hidden;
 
-     .homeBanner{
-        display: $flex;
-        align-items: $align-items-center;
-        position: $relative;
-        height: 100vh;
-
-        .bannerFrontParticles{
-            position: absolute;width: 100%;            
-            animation-duration: 1s;
-            animation-timing-function: ease-out;
-            animation-iteration-count: 1;
-            animation-delay: 0s;
-            animation-name: frontParticles;
-        }
-
-        .bannerPlayer{
-            position: absolute;
-            animation-duration: 1s;
-            animation-timing-function: ease-out;
-            animation-iteration-count: 1;
-            animation-delay: 0s;
-            animation-name: soccerPlayer;
-            
-            .bannerPlayerImg{max-height: 90vh;}
-        }
-
-        .bannerBall{
-            max-height: 90vh;
-            position: absolute; 
-            animation-name: frontParticles;
-            animation:spin 1s linear;
-            animation-iteration-count: 1;
-            right: 10%;
-        
-        }
+    .bannerFrontParticles {
+      position: absolute;
+      width: 100%;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: 1;
+      animation-delay: 0s;
+      animation-name: frontParticles;
     }
+
+    .bannerPlayer {
+      position: absolute;
+      animation-duration: 1s;
+      animation-timing-function: ease-out;
+      animation-iteration-count: 1;
+      animation-delay: 0s;
+      animation-name: soccerPlayer;
+
+      .bannerPlayerImg {
+        max-height: 90vh;
+      }
+    }
+
+    .bannerBall {
+      max-height: 90vh;
+      position: absolute;
+      right: 30%;
+      transform: translate(0, -100px);
+      animation-name: frontParticles;
+      animation: spin 1.2s linear;
+      animation-iteration-count: 1;
+    }
+  }
 }
 
-@keyframes spin { 
-    0% {transform: translate(150%, 0) rotate(0deg)}
-    100% {transform: translate(-0%, 0) rotate(360deg)}
+@keyframes spin {
+  0% {
+    transform: translate(200%, -100px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-0%, -100px) rotate(360deg);
+  }
 }
 
 @keyframes frontParticles {
-    0% {
-        transform: translate(-100%,0);opacity: 0;
-    }
-
-    100% {
-        transform: translate(0,0);opacity: 1;
-    }
+  0% {
+    transform: translate(-100%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }
 
-
 @keyframes soccerPlayer {
-    0% {
-        transform: translate(-100%,0);opacity: 0;
-    }
-
-    100% {
-        transform: translate(0,0);opacity: 1;
-    }
+  0% {
+    transform: translate(-100%, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }
