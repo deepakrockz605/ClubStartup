@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
-import Navbar from './Navbar'
-import Footer from '../Components/Footer';
+// import Navbar from './Navbar'
+// import Footer from '../Components/Footer';
+import '../CSS/Bootstrap/bootstrap.min.css'
 
 class Layout extends PureComponent {
     constructor(props) {
@@ -14,11 +15,11 @@ class Layout extends PureComponent {
     render() {
         let show = 
         <div>
-            <Navbar />
+            {/* <Navbar /> */}
             <div className="corporate-wrapper">
                 {this.props.children}
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
         return (
             <div>

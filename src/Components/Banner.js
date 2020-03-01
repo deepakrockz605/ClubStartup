@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-class Banner extends PureComponent {
+class Home extends PureComponent {
     constructor(props) {
         super(props)
 
@@ -11,9 +11,9 @@ class Banner extends PureComponent {
 
     render() {
         return (
-            <h1>Hello from Banner</h1>
+            <h1>Hello from Home</h1>
         )
     }
 }
 
-export default Banner
+export default Home

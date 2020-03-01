@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from './Common/Layout';
 import RestrictedContainer from './Common/RestrictedContainer'
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
