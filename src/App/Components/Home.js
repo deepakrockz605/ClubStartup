@@ -4,7 +4,6 @@ import "../CSS/Home.scss";
 class Banner extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {};
   }
 

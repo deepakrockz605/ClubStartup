@@ -34,3 +34,24 @@ ul , li {
 }
 
 /* Global CSS Ends Here */
+
+.Header-wrapper {
+  text-align: center;
+  color: orange;
+
+  .Header-tablist {
+    font-size: 20px;
+    display: inline;
+  }
+
+  .Header-tab {
+    display: inline;
+    margin-right: 15px;
+    cursor: pointer;
+  }
+
+  .Header-tab:active {
+    font-weight: 500;
+    color: orangered;
+  }
+}
