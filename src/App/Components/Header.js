@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import Signup from './Signup';
+import Login from './Login';
 
 class Header extends PureComponent {
     constructor(props) {
@@ -13,7 +15,7 @@ class Header extends PureComponent {
     render() {
         return (
             <div className='Header-wrapper'>
-                <Tabs>
+                <Tabs className='tabs'>
                     <TabList className='Header-tablist'>
                         <Tab className='Header-tab'>Home</Tab>
                         <Tab className='Header-tab'>About us</Tab>
@@ -21,19 +23,23 @@ class Header extends PureComponent {
                         <Tab className='Header-tab'>Mission</Tab>
                     </TabList>
 
-                    <TabPanel>
+                    <TabPanel className='TabPanel'>
                         <h2>Lets Play</h2>
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel className='TabPanel'>
                         <h2>WEBROSCLUB ...</h2>
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel className='TabPanel'>
                         <h2>Baali trip</h2>
                     </TabPanel>
-                    <TabPanel>
+                    <TabPanel className='TabPanel'>
                         <h2>Richie rich</h2>
                     </TabPanel>
                 </Tabs>
+                <div className='authentication'>
+                    <Signup/>
+                    <Login/>
+                </div>
             </div>
         )
     }

@@ -12,6 +12,8 @@ body {
   background: $primary-white-color;
   font-size: $primary-font-size;
   color: $defaultColor;
+  -moz-user-select: $none;
+  -webkit-user-select: $none;
 }
 
 a {
@@ -37,21 +39,62 @@ ul , li {
 
 .Header-wrapper {
   text-align: center;
-  color: orange;
+  color: white;
+  background-color: black;
+  font-size: 18px;
+  padding: 10px;
 
   .Header-tablist {
-    font-size: 20px;
+    margin-left: 150px;
     display: inline;
   }
 
   .Header-tab {
     display: inline;
-    margin-right: 15px;
+    margin: 0px 15px;
     cursor: pointer;
   }
 
-  .Header-tab:active {
+  .Header-tab:hover {
     font-weight: 500;
     color: orangered;
+  }
+
+  .tabs {
+    display: inline;
+  }
+
+  .TabPanel { 
+    color: black;
+    position: absolute;
+    left: 500px;
+    top: 50px;
+  }
+
+  .authentication {
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  .Signup {
+    display: inline;
+  }
+
+  .Login {
+    display: inline;
+    margin-left: 20px;
+  }
+
+  .header-button {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+
+  .header-button:active {
+    color: orangered;
+    transform: translateY(1px);
   }
 }
