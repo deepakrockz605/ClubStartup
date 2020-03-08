@@ -33,6 +33,8 @@ ul , li {
   padding: $defaultPadding;
 }
 
+li{list-style-type: none;}
+
 /* Global CSS Ends Here */
 
 .Header-wrapper {
@@ -54,4 +56,13 @@ ul , li {
     font-weight: 500;
     color: orangered;
   }
+}
+
+
+/* CSS FOR GLOBAL HEADER */
+
+.section--header {
+  padding: 20px;
+  color: #140a47;
+  font-size: 30px;
 }

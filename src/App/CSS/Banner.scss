@@ -49,8 +49,67 @@ $relative: relative;
       animation: spin 1.2s linear;
       animation-iteration-count: 1;
     }
+
+    .bannerText{
+
+
+      .bannerInnerText {
+        position: absolute;
+        top: 65%;
+        left: 70%;
+        transform: translate(-50%,-50%);
+        transition: .1s ease-in-out;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        animation-iteration-count: 1;
+        animation-delay: 0s;
+        animation-name: bannerTextAnimation;
+  
+        .bannerInnerText--header{
+          font-size: 26px;
+          text-transform: capitalize;
+          font-weight: bold;
+          background: rgba(0, 0, 0, 0.278431);
+          color: #7f3001;
+          padding: 2px 10px;
+        }
+  
+        .bannerInnerText--subheader{
+          font-size: 18px;
+          text-transform: capitalize;
+          font-weight: 500;
+          color: #060709;
+          padding: 5px 5px 0;
+        }
+        .btn-Banner{
+          background: transparent;
+          color: red;
+          border: 1px solid red;
+          padding: 4px 25px;
+          margin: 15px 0 0;
+
+  
+          &:focus , &:hover{
+            outline: none;box-shadow: none;color: #fff;background: red;border: 1px solid #fff;
+          }
+        }
+      }
+    }
+
   }
 }
+
+@keyframes bannerTextAnimation {
+  0% {
+    transform: translate(-50%, 300%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%,-50%);
+    opacity: 1;
+  }
+}
+
 
 @keyframes spin {
   0% {

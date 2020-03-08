@@ -1,0 +1,31 @@
+.about--ulList{display: flex;justify-content: space-around;flex-wrap: wrap}
+.about--listBox{ background: #fff;transition: .2s all;cursor: pointer;}
+li.about--list {
+    width: 30%;
+}
+
+.aboutus--description {
+    border: 1px solid #ebebeb;
+    padding: 10px 15px;
+}
+
+.aboutus--descriptionHeader{
+    font-size: 22px;
+    font-weight: 700;
+    color: #4d4d4f;
+}
+
+.aboutus--descriptionDetails {
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+.about--list {
+    width: 30%;
+    padding: 0px 0 20px;
+}
+
+.about--listBox:hover{
+    box-shadow: 2px 3px 7px 3px rgba(0,0,0,0.07);
+}
