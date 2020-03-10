@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import Signup from './Signup';
-import Login from './Login';
+// import Signup from './Signup';
+// import Login from './Login';
+import GoogleAuth from './GoogleAuth';
 
 class Header extends PureComponent {
     constructor(props) {
@@ -37,8 +38,9 @@ class Header extends PureComponent {
                     </TabPanel>
                 </Tabs>
                 <div className='authentication'>
-                    <Signup/>
-                    <Login/>
+                    {/* <Signup/>
+                    <Login/> */}
+                    <GoogleAuth />
                 </div>
             </div>
         )
