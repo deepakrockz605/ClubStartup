@@ -1,11 +1,7 @@
-
-
-const initState = {};
-
-const rootReducer = (state = initState, action) => {
-
-  state = state || initState
-
-}
-
-export default rootReducer;
+import { combineReducers } from 'redux'
+import authReducer from './authReducer'
+// import { reducer as formReducer } from 'redux-form'
+export default combineReducers({
+    auth: authReducer,
+    // form: formReducer
+})

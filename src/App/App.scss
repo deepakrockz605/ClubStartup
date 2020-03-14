@@ -12,6 +12,8 @@ body {
   background: $primary-white-color;
   font-size: $primary-font-size;
   color: $defaultColor;
+  -moz-user-select: $none;
+  -webkit-user-select: $none;
 }
 
 a {
@@ -37,32 +39,88 @@ li{list-style-type: none;}
 
 /* Global CSS Ends Here */
 
-.Header-wrapper {
-  text-align: center;
-  color: orange;
-
-  .Header-tablist {
-    font-size: 20px;
-    display: inline;
-  }
-
-  .Header-tab {
-    display: inline;
-    margin-right: 15px;
-    cursor: pointer;
-  }
-
-  .Header-tab:active {
-    font-weight: 500;
-    color: orangered;
-  }
-}
-
-
 /* CSS FOR GLOBAL HEADER */
 
 .section--header {
   padding: 20px;
   color: #140a47;
   font-size: 30px;
+}
+
+/* ------------------- */
+
+.Header-wrapper {
+  // text-align: center;
+  // color: white;
+  // background-color: black;
+  // font-size: 18px;
+  // padding: 10px;
+
+  text-align: center;
+  color: white;
+  width: 100%;
+  position: fixed;
+  background-color: #00000057;
+  font-size: 20px;
+  padding: 20px;
+  z-index: 9999;
+
+  .Header-tablist {
+    margin-left: 150px;
+    display: inline;
+  }
+
+  .Header-tab {
+    display: inline;
+    margin: 0px 15px;
+    cursor: pointer;
+  }
+
+  .Header-tab:hover {
+    font-weight: 500;
+    color: orangered;
+  }
+
+  .tabs {
+    display: inline;
+  }
+
+  .TabPanel { 
+    color: black;
+    position: absolute;
+    left: 500px;
+    top: 50px;
+  }
+
+  .authentication {
+    display: inline;
+    position: absolute;
+    right: 50px;
+  }
+
+  .Signup {
+    display: inline;
+  }
+
+  .Login {
+    display: inline;
+    margin-left: 20px;
+  }
+
+  .googleAuth {
+    display: inline;
+    margin-left: 20px;
+  }
+
+  .header-button {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+
+  .header-button:active {
+    color: orangered;
+    transform: translateY(1px);
+  }
 }
