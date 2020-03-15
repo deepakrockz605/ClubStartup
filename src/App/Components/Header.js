@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Signup from './Signup';
 import Login from './Login';
-import GoogleAuth from './GoogleAuth';
+// import GoogleAuth from './GoogleAuth';
 import '../CSS/Header.scss';
 
 class Header extends PureComponent {

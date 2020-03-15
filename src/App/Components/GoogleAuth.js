@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 class GoogleAuth extends Component {
     componentDidMount() {
+        console.log('componentDidMountcomponentDidMount');
         window.gapi.load('client:auth2', () => {
             window.gapi.client.init({
                 clientId: '191483958587-js6uiijoc757ulf3hul6ab2uq5oqa9b9.apps.googleusercontent.com',
@@ -18,6 +19,7 @@ class GoogleAuth extends Component {
     }
 
     changeSignedStatus = (isSignedIn) => {
+        console.log('changeSignedStatus --');
         if (isSignedIn) {
             this.props.SIGN_IN(this.auth.currentUser.get().getId());
         } else {
@@ -26,6 +28,7 @@ class GoogleAuth extends Component {
     }
 
     renderAuth() {
+        console.log('this.props ->> ', this.props.isSignedIn);
         if (this.props.isSignedIn === null) {
             return <div>Null</div>
         } else if (this.props.isSignedIn === true) {
@@ -36,6 +39,7 @@ class GoogleAuth extends Component {
     }
 
     onSignInClick = () => {
+        console.log('onSignInClick');
         this.auth.signIn();
     }
 
@@ -44,6 +48,7 @@ class GoogleAuth extends Component {
     }
 
     render() {
+        console.log('IN GOOGLE AUTH RENDER ......');
         return (
             <div className='googleAuth'>
                 {this.renderAuth()}

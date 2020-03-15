@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+// import { SIGN_IN, SIGN_OUT } from '../../Store/Actions';
+// import GoogleAuth from './GoogleAuth';
 import '../CSS/Login.scss';
 
 class Login extends PureComponent {
@@ -6,20 +8,45 @@ class Login extends PureComponent {
         super(props)
 
         this.state = {
-            isLoginHere: true
+            isLoginHere: true,
+            userId: null
         }
         console.log('constructor ', this);
     }
 
+    componentDidMount() {
+        console.log('componentDidMountcomponentDidMount');
+        window.gapi.load('client:auth2', () => {
+            window.gapi.client.init({
+                clientId: '191483958587-js6uiijoc757ulf3hul6ab2uq5oqa9b9.apps.googleusercontent.com',
+                scope: 'email'
+            }).then(() => {
+                this.auth = window.gapi.auth2.getAuthInstance();
+                this.changeSignedStatus(this.auth.isSignedIn.get());
+                this.auth.isSignedIn.listen(this.changeSignedStatus);
+            });
+        });
+    }
+
+    changeSignedStatus = (isSignedIn) => {
+        console.log('changeSignedStatus ->', isSignedIn);
+        if (isSignedIn) {
+            this.setState({
+                userId: this.auth.currentUser.get().getId()
+            });
+        } else {
+            this.props.SIGN_OUT();
+        }
+
+    }
+
     updateState = () => {
-        console.log("here on click");
         this.setState({
             isLoginHere: false
         });
     }
 
     updateOnCloseClick = () => {
-        console.log("here on click");
         this.setState({
             isLoginHere: false
         });
@@ -30,12 +57,15 @@ class Login extends PureComponent {
         console.log('input change');
     }
 
-    googleAuth = () => {
-        console.log('IN GOOGLE AUTH'); // boolean true and then component call in render method
+    googleAuthRequired = () => {
+        this.setState({
+            isLoginHere: false,
+        });
+        if( this.props.callBackLogin && this.props.callBackLogin());
+        this.auth.signIn();
     }
 
     render() {
-        console.log('IN LOGIN CONSOLE');
         const { isLoginHere } = this.state;
         return (isLoginHere && (
             <div id="myModal" className="modal">
@@ -50,7 +80,7 @@ class Login extends PureComponent {
                     <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>
                     <div className = "login-box">
                         <span style={{margin: '10px 0px', fontSize: '16px'}}>Log In with Google ? </span>
-                        <span style={{color: '#2a2aee', fontSize: '16px', cursor: 'pointer'}} onClick= {this.googleAuth}>Click here</span>
+                        <span style={{color: '#2a2aee', fontSize: '16px', cursor: 'pointer'}} onClick= {this.googleAuthRequired}>Click here</span>
                     </div>
                 </div>
             </div>
