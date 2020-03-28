@@ -1,5 +1,5 @@
 
-.modal {
+.login-modal {
     position: fixed;
     z-index: 10000;
     left: 0;
@@ -10,53 +10,83 @@
     display: block !important;
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.6);
-}
 
-.modal-content {
-    color: orangered;
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%;
-    border-radius: 5px;
-}
+    .modal-content {
+        color: orangered;
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+        border-radius: 5px;
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    right: 5px;
-    top: 0px;
-}
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 5px;
+            top: 0px;
+        }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
 
-.login-box {
-    font-size: 14px;
-    margin-bottom: 10px;
-}
+        .login-image {
+            margin: 0 auto;
+            margin-bottom: 10px;
+            width: 80px;
+            height: 70px;
+        }
 
-.login-box-inputBox {
-    width: 90%;
-    padding: 4px;
-    margin-bottom: 10px;
-}
+        .login-box {
+            font-size: 14px;
+            margin-bottom: 10px;
+            
+            .login-box-container {
+                margin-bottom: 10px;
 
-.login-box-button {
-    width: 90%;
-    background-color: #2a2aee;
-    color: white;
-    outline: none;
-    border: 1px solid #2a2aee;
-    border-radius: 5px;
-    padding: 4px;
-    margin-top: 10px;
+                display: -ms-flexbox;
+                display: flex;
+                width: 100%;
+
+                .login-box-inputBox {
+                    padding: 4px;
+                    width: 100%;
+                    border: 1px solid #2a2aee;
+                    outline: none;
+                }
+
+                .login-box-inputBox:focus {
+                    border: 2px solid #2a2aee;
+                    border-left: 1px solid #2a2aee;
+                }
+
+                .icon {
+                    font-size: 21px;
+                    padding: 6px;
+                    background: #2a2aee;
+                    color: white;
+                    min-width: 40px;
+                    text-align: center;
+                }
+            }
+
+            .login-box-button {
+                width: 100%;
+                background-color: #2a2aee;
+                color: white;
+                outline: none;
+                border: 1px solid #2a2aee;
+                border-radius: 5px;
+                padding: 4px;
+                margin-top: 10px;
+            }
+        }
+    }
 }

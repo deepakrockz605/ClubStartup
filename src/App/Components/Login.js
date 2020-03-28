@@ -44,6 +44,7 @@ class Login extends PureComponent {
         this.setState({
             isLoginHere: false
         });
+        if( this.props.callBackLogin && this.props.callBackLogin());
     }
 
     updateOnCloseClick = () => {
@@ -68,15 +69,22 @@ class Login extends PureComponent {
     render() {
         const { isLoginHere } = this.state;
         return (isLoginHere && (
-            <div id="myModal" className="modal">
+            <div id="myModal" className="login-modal">
                 <div className="modal-content">
-                    <span className="close" onClick = {this.updateOnCloseClick}>&times;</span>
-                    <p style={{margin: '10px 0px', fontSize: '22px', marginBottom: '20px'}}>Log In</p>
-                    <div className = "login-box">
-                        <input className = "login-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <input type = "password" className = "login-box-inputBox" placeholder="Enter your Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <button className='login-box-button' onClick = {this.updateState}>Log In</button>
-                    </div>
+                    <span className="close" onClick = {this.updateState}>&times;</span>
+                    <p style={{fontSize: '22px' }}>Log In</p>
+                    <div><img src={require("../Images/login.png")} alt="Login" className="login-image" /></div>
+                    <form className = "login-box" onSubmit={this.onRegisterFormSubmit}>
+                        <div className="login-box-container">
+                            <i className="fa fa-user icon" aria-hidden="true"></i>
+                            <input className = "login-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <div className="login-box-container">
+                            <i className="fa fa-lock icon" aria-hidden="true"></i>
+                            <input type = "password" className = "login-box-inputBox" placeholder="Enter your Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <button className='login-box-button'>Log In</button>
+                    </form>
                     <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>
                     <div className = "login-box">
                         <span style={{margin: '10px 0px', fontSize: '16px'}}>Log In with Google ? </span>

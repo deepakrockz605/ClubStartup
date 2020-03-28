@@ -42,21 +42,34 @@ class Signup extends PureComponent {
         const { isSignUp } = this.state;
         console.log("here in Sign Up");
         return (isSignUp && (
-            <div id="myModal" className="modal">
+            <div id="myModal" className="signup-modal">
                 <div className="modal-content">
                     <span className="close" onClick = {this.updateOnCloseClick}>&times;</span>
-                    <p style={{margin: '10px 0px', fontSize: '22px', marginBottom: '20px'}}>Create a New Account</p>
-                    <div className = "signup-box">
-                        <input className = "signup-box-inputBox" placeholder="Enter your Name" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <input className = "signup-box-inputBox" placeholder="Enter your Phone Number" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <input className = "signup-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <input type = "password" className = "signup-box-inputBox" placeholder="Create Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
-                        <button className='signup-box-button' onClick = {this.updateState}>Sign Up</button>
-                    </div>
+                    <p style={{fontSize: '22px'}}>Create a New Account</p>
+                    <div><img src={require("../Images/signup2.png")} alt="Signup" className="signup-image" /></div>
+                    <form className = "signup-box" onSubmit={this.updateState}>
+                        <div className="signup-box-container">
+                            <i className="fa fa-user icon" aria-hidden="true"></i>
+                            <input className = "signup-box-inputBox" placeholder="Enter your Name" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <div className="signup-box-container">
+                            <i className="fa fa-phone icon" aria-hidden="true"></i>
+                            <input className = "signup-box-inputBox" placeholder="Enter your Phone Number" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <div className="signup-box-container">
+                            <i className="fa fa-envelope icon" aria-hidden="true"></i>
+                            <input className = "signup-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <div className="signup-box-container">
+                            <i className="fa fa-lock icon" aria-hidden="true"></i>
+                            <input type = "password" className = "signup-box-inputBox" placeholder="Create Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                        </div>
+                        <button className='signup-box-button'>Sign Up</button>
+                    </form>
                     <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>
                     <div className = "signup-box">
-                        <span style={{margin: '10px 0px', fontSize: '16px'}}>Have an account ? </span>
-                        <span style={{color: '#2a2aee', fontSize: '16px', cursor: 'pointer'}} onClick = {this.redirectToLoginPage}>Log In</span>
+                        <span style={{margin: '10px 0px', fontSize: '18px'}}>Have an account ? </span>
+                        <span style={{color: '#2a2aee', fontSize: '18px', cursor: 'pointer'}} onClick = {this.redirectToLoginPage}>Log In</span>
                     </div>
                 </div>
             </div>
