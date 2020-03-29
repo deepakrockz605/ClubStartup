@@ -15,6 +15,18 @@
       display: inline;
       margin: 0px 15px;
       cursor: pointer;
+
+      a {
+        color: white;
+      }
+
+      a:hover {
+        color: orange;
+      }
+
+      a:active {
+        color: orangered;
+      } 
     }
   
     .Header-tab:hover {
