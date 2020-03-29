@@ -8,7 +8,7 @@ import Footer from './Footer';
 
 function Home() {
   return (
-    <div>
+    <div style={{display: 'grid' }}>
       <section id="section-1">
         <Banner />
       </section>
