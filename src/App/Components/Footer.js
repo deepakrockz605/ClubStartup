@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
+import '../CSS/Footer.scss';
 
 class Footer extends PureComponent {
     constructor(props) {
@@ -11,7 +12,7 @@ class Footer extends PureComponent {
 
     render() {
         return (
-            <h1>Hello From Footer</h1>
+            <div className='footer'>Footer</div>
         )
     }
 }

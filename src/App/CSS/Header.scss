@@ -1,0 +1,69 @@
+.Header-wrapper {
+    color: white;
+    width: 100%;
+    position: fixed;
+    background-color: #00000087;
+    font-size: 20px;
+    padding: 20px;
+    z-index: 9999;
+  
+    .Header-tablist {
+      display: inline;
+    }
+  
+    .Header-tab {
+      display: inline;
+      margin: 0px 15px;
+      cursor: pointer;
+    }
+  
+    .Header-tab:hover {
+      font-weight: 500;
+      color: orangered;
+    }
+  
+    .tabs {
+      display: inline;
+    }
+  
+    .TabPanel { 
+      color: black;
+      position: absolute;
+      left: 700px;
+      top: 100px;
+    }
+  
+    .authentication {
+      display: inline;
+      position: absolute;
+      text-align: center;
+      right: 50px;
+      margin-top: -2px;
+    }
+  
+    .Signup {
+      display: inline;
+    }
+  
+    .Login {
+      display: inline;
+      margin-left: 20px;
+    }
+  
+    .googleAuth {
+      display: inline;
+      margin-left: 20px;
+    }
+  
+    .header-button {
+      background-color: #00000000;
+      color: white;
+      border: 1px solid white;
+      cursor: pointer;
+    }
+  
+    .header-button:active {
+      color: orangered;
+      transform: translateY(1px);
+    }
+  }

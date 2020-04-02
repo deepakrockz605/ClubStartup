@@ -1,19 +1,34 @@
 import React, { PureComponent } from "react";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-// import Signup from './Signup';
-// import Login from './Login';
-import GoogleAuth from './GoogleAuth';
+import Signup from './Signup';
+import Login from './Login';
+// import GoogleAuth from './GoogleAuth';
+import '../CSS/Header.scss';
 
 class Header extends PureComponent {
     constructor(props) {
         super(props)
 
         this.state = {
-
+            isLogin: false
         }
     }
 
+    updateState = () => {
+        console.log("here on click");
+        this.setState({
+            isLogin: true
+        });
+    }
+
+    callBackLogin = () => {
+        this.setState({
+            isLogin: false
+        });
+    }
+
     render() {
+        const { isLogin } = this.state;
         return (
             <div className='Header-wrapper'>
                 <Tabs className='tabs'>
@@ -38,9 +53,13 @@ class Header extends PureComponent {
                     </TabPanel>
                 </Tabs>
                 <div className='authentication'>
-                    {/* <Signup/>
-                    <Login/> */}
-                    <GoogleAuth />
+                    <Signup/>
+                    {/* <Login/> */}
+                    {/* <GoogleAuth /> */}
+                    <div className='Login'>
+                        <button className='header-button' onClick = {this.updateState}>Log In</button>
+                        {isLogin && <Login callBackLogin = {this.callBackLogin}/>}
+                    </div>
                 </div>
             </div>
         )

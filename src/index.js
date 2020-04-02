@@ -8,9 +8,9 @@ import App from "./App/App";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from 'react-redux'  
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga'
-
-import rootReducer from './Store/Reducers'
+import createSagaMiddleware from 'redux-saga';
+import rootReducer from './Store/Reducers';
+import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 const sagaMiddleware = createSagaMiddleware();
 let store = createStore( 
