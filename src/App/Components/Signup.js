@@ -9,7 +9,25 @@ class Signup extends PureComponent {
 
         this.state = {
             isSignUp: false,
-            isRedirectToLogin: false
+            isRedirectToLogin: false,
+            validation: [
+                {
+                    error: "Username field cant be empty",
+                    isError: true
+                },
+                {
+                    error: "Only Numbers",
+                    isError: true
+                },
+                {   
+                    error: "Email id should contain @ in it",
+                    isError: true
+                },
+                {
+                    error: "You have entered wrong password",
+                    isError: true
+                }
+            ]
         }
     }
 
@@ -38,8 +56,18 @@ class Signup extends PureComponent {
         });
     }
 
+    onSubmitClick = (event) => {
+        event.preventDefault();
+        console.log('hererrerere', event);
+        console.log(event.target[0].value);
+        console.log(event.target);
+        console.log(event.target.elements);
+        // console.log(event.target.username.value)
+        // console.log(this.inputNode.value)
+    }
+
     checkSignup() {
-        const { isSignUp } = this.state;
+        const { isSignUp, validation } = this.state;
         console.log("here in Sign Up");
         return (isSignUp && (
             <div id="myModal" className="signup-modal">
@@ -47,23 +75,27 @@ class Signup extends PureComponent {
                     <span className="close" onClick = {this.updateOnCloseClick}>&times;</span>
                     <p style={{fontSize: '22px'}}>Create a New Account</p>
                     <div><img src={require("../Images/signup2.png")} alt="Signup" className="signup-image" /></div>
-                    <form className = "signup-box" onSubmit={this.updateState}>
+                    <form className = "signup-box" onSubmit={this.onSubmitClick}>
                         <div className="signup-box-container">
                             <i className="fa fa-user icon" aria-hidden="true"></i>
                             <input className = "signup-box-inputBox" placeholder="Enter your Name" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[0].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-phone icon" aria-hidden="true"></i>
                             <input className = "signup-box-inputBox" placeholder="Enter your Phone Number" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[1].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-envelope icon" aria-hidden="true"></i>
                             <input className = "signup-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[2].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-lock icon" aria-hidden="true"></i>
                             <input type = "password" className = "signup-box-inputBox" placeholder="Create Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[3].error}</div>
                         <button className='signup-box-button'>Sign Up</button>
                     </form>
                     <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>

@@ -9,7 +9,17 @@ class Login extends PureComponent {
 
         this.state = {
             isLoginHere: true,
-            userId: null
+            userId: null,
+            validation: [
+                {   
+                    error: "Email id should contain @ in it",
+                    isError: true
+                },
+                {
+                    error: "You have entered wrong password",
+                    isError: true
+                }
+            ]
         }
         console.log('constructor ', this);
     }
@@ -67,7 +77,7 @@ class Login extends PureComponent {
     }
 
     render() {
-        const { isLoginHere } = this.state;
+        const { isLoginHere, validation } = this.state;
         return (isLoginHere && (
             <div id="myModal" className="login-modal">
                 <div className="modal-content">
@@ -79,10 +89,12 @@ class Login extends PureComponent {
                             <i className="fa fa-user icon" aria-hidden="true"></i>
                             <input className = "login-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[0].error}</div>
                         <div className="login-box-container">
                             <i className="fa fa-lock icon" aria-hidden="true"></i>
                             <input type = "password" className = "login-box-inputBox" placeholder="Enter your Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
                         </div>
+                        <div className="error-message">{validation[1].error}</div>
                         <button className='login-box-button'>Log In</button>
                     </form>
                     <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>
