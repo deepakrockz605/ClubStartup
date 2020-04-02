@@ -6,14 +6,20 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.1",
     "@testing-library/user-event": "^7.2.1",
+    "font-awesome": "^4.7.0",
     "i": "^0.3.6",
+    "jquery": "^3.4.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.1",
-    "npm": "^6.14.1",
+    "npm": "^6.14.4",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-animate-on-scroll": "^2.1.5",
+    "react-app-polyfill": "^1.0.6",
     "react-bootstrap": "^1.0.0-beta.17",
+    "react-datepicker": "^2.14.1",
     "react-dom": "^16.13.0",
+    "react-rangeslider": "^2.2.0",
     "react-redux": "^7.2.0",
     "react-reveal": "^1.2.2",
     "react-router-dom": "^5.1.2",
@@ -22,9 +28,13 @@
     "react-scrollreveal": "^1.2.0",
     "react-scrollspy": "^3.4.2",
     "react-tabs": "^3.1.0",
+    "reactjs-toastr": "^1.1.0",
     "redux": "^4.0.5",
+    "redux-form": "^8.3.1",
     "redux-saga": "^1.1.3",
-    "scrollreveal": "^4.0.5"
+    "scrollreveal": "^4.0.5",
+    "semantic-ui-react": "^0.88.2",
+    "toastr": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,6 +52,7 @@
       "not op_mini all"
     ],
     "development": [
+      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
