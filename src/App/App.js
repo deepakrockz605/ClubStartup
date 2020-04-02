@@ -3,6 +3,7 @@ import Layout from './Common/Layout';
 import RestrictedContainer from './Common/RestrictedContainer';
 import Header from './Components/Header';
 import './App.scss';
+import '../styles/font-awesome.min.css'
 
 function App() {
   return (
