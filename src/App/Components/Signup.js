@@ -10,22 +10,26 @@ class Signup extends PureComponent {
         this.state = {
             isSignUp: false,
             isRedirectToLogin: false,
-            validation: [
+            inputValues: [
                 {
+                    value: "",
                     error: "Username field cant be empty",
-                    isError: true
+                    isError: false
                 },
                 {
+                    value: "",
                     error: "Only Numbers",
-                    isError: true
-                },
-                {   
-                    error: "Email id should contain @ in it",
-                    isError: true
+                    isError: false
                 },
                 {
+                    value: "",
+                    error: "Email id should contain @ in it",
+                    isError: false
+                },
+                {
+                    value: "",
                     error: "You have entered wrong password",
-                    isError: true
+                    isError: false
                 }
             ]
         }
@@ -57,51 +61,62 @@ class Signup extends PureComponent {
     }
 
     onSubmitClick = (event) => {
+        const { inputValues } = this.state;
+        const updatedInputValues = [...inputValues];
+        const email_reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/; // eslint-disable-line
+        const number_reg = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        
         event.preventDefault();
-        console.log('hererrerere', event);
-        console.log(event.target[0].value);
-        console.log(event.target);
-        console.log(event.target.elements);
-        // console.log(event.target.username.value)
-        // console.log(this.inputNode.value)
+        updatedInputValues.forEach((inputValue, index) => {
+            inputValue.value = event.target[index].value;
+        });
+        updatedInputValues[0].isError = !event.target[0].value.length;
+        updatedInputValues[1].isError = !number_reg.test(updatedInputValues[1].value);
+        updatedInputValues[2].isError = !email_reg.test(updatedInputValues[2].value);
+        updatedInputValues[3].isError = !event.target[3].value.length;
+        
+        console.log('<------->', updatedInputValues);
+        this.setState({
+            inputValues: updatedInputValues
+        });
     }
 
     checkSignup() {
-        const { isSignUp, validation } = this.state;
+        const { isSignUp, inputValues } = this.state;
         console.log("here in Sign Up");
         return (isSignUp && (
             <div id="myModal" className="signup-modal">
                 <div className="modal-content">
-                    <span className="close" onClick = {this.updateOnCloseClick}>&times;</span>
-                    <p style={{fontSize: '22px'}}>Create a New Account</p>
+                    <span className="close" onClick={this.updateOnCloseClick}>&times;</span>
+                    <p style={{ fontSize: '22px' }}>Create a New Account</p>
                     <div><img src={require("../Images/signup2.png")} alt="Signup" className="signup-image" /></div>
-                    <form className = "signup-box" onSubmit={this.onSubmitClick}>
+                    <form className="signup-box" onSubmit={this.onSubmitClick}>
                         <div className="signup-box-container">
                             <i className="fa fa-user icon" aria-hidden="true"></i>
-                            <input className = "signup-box-inputBox" placeholder="Enter your Name" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                            <input className="signup-box-inputBox" placeholder="Enter your Name" value={this.value} onChange={(e) => this.onChange(e)} />
                         </div>
-                        <div className="error-message">{validation[0].error}</div>
+                        <div className="error-message">{inputValues[0].isError && inputValues[0].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-phone icon" aria-hidden="true"></i>
-                            <input className = "signup-box-inputBox" placeholder="Enter your Phone Number" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                            <input className="signup-box-inputBox" placeholder="Enter your Phone Number" value={this.value} onChange={(e) => this.onChange(e)} />
                         </div>
-                        <div className="error-message">{validation[1].error}</div>
+                        <div className="error-message">{inputValues[1].isError && inputValues[1].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-envelope icon" aria-hidden="true"></i>
-                            <input className = "signup-box-inputBox" placeholder="Enter your Email id" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                            <input className="signup-box-inputBox" placeholder="Enter your Email id" value={this.value} onChange={(e) => this.onChange(e)} />
                         </div>
-                        <div className="error-message">{validation[2].error}</div>
+                        <div className="error-message">{inputValues[2].isError && inputValues[2].error}</div>
                         <div className="signup-box-container">
                             <i className="fa fa-lock icon" aria-hidden="true"></i>
-                            <input type = "password" className = "signup-box-inputBox" placeholder="Create Password" value = {this.value} onChange = {(e) => this.onChange(e)}/>
+                            <input type="password" className="signup-box-inputBox" placeholder="Create Password" value={this.value} onChange={(e) => this.onChange(e)} />
                         </div>
-                        <div className="error-message">{validation[3].error}</div>
+                        <div className="error-message">{inputValues[3].isError && inputValues[3].error}</div>
                         <button className='signup-box-button'>Sign Up</button>
                     </form>
-                    <div style={{color:'grey'}}><hr style={{margin: '10px'}}/></div>
-                    <div className = "signup-box">
-                        <span style={{margin: '10px 0px', fontSize: '18px'}}>Have an account ? </span>
-                        <span style={{color: '#2a2aee', fontSize: '18px', cursor: 'pointer'}} onClick = {this.redirectToLoginPage}>Log In</span>
+                    <div style={{ color: 'grey' }}><hr style={{ margin: '10px' }} /></div>
+                    <div className="signup-box">
+                        <span style={{ margin: '10px 0px', fontSize: '18px' }}>Have an account ? </span>
+                        <span style={{ color: '#2a2aee', fontSize: '18px', cursor: 'pointer' }} onClick={this.redirectToLoginPage}>Log In</span>
                     </div>
                 </div>
             </div>
@@ -117,7 +132,7 @@ class Signup extends PureComponent {
 
     checkLogin() {
         const { isRedirectToLogin } = this.state;
-        return (isRedirectToLogin && <Login callBackLogin = {this.callBackLogin}/>
+        return (isRedirectToLogin && <Login callBackLogin={this.callBackLogin} />
         );
     }
 
@@ -125,7 +140,7 @@ class Signup extends PureComponent {
     render() {
         return (
             <div className='Signup'>
-                <button className='header-button' onClick = {this.updateState}>Sign Up</button>
+                <button className='header-button' onClick={this.updateState}>Sign Up</button>
                 {this.checkSignup()}
                 {this.checkLogin()}
             </div>
