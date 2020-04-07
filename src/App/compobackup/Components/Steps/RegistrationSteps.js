@@ -11,14 +11,30 @@ import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import { login, getUserDetails } from "../../../services/productService";
 
-// var _ = require("lodash");
-
 class RegistrationSteps extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
+      userResponse: {
+        // Step 1
+        FirstName: "",
+        LastName: "",
+        DateOfBith: null,
+        Nationality: "default",
+        Height: "",
+        Weight: "",
+
+        // Step 2
+        players: [],
+        skillsSet: [],
+        selectedPlayer: "defaultPlayer",
+        selectedSkills: "default0",
+        playerFoot: "default",
+        playerAgent: "",
+        playerskills: "",
+      },
+      age: 0,
       currentStep: 1,
-      isUserRegisterd : false,
       steps: {
         step1: true,
         step2: false,
@@ -26,154 +42,100 @@ class RegistrationSteps extends PureComponent {
         step4: false,
         step5: false,
       },
-      userResponse: {
-        //Step 1
-        FirstName: "",
-        LastName: "",
-        DateOfBirth: null,
-        Nationality: "default",
-        Height: "",
-        Weight: "",
 
-        // Step 2
-        Position: "defaultPlayer",
-        Role: "default0",
-        Foot: "default",
-        Agent: "",
-        Skills: "",
+      // Step 1
 
-        // Step 3
-        Ratings: {
-          Catching: 0,
-          Punching: 0,
-          Throwing: 0,
-          Reflexes: 0,
-          Distribution: 0,
-          Center_Defender: 0,
-          Right_Back: 0,
-          Left_Back: 0,
-          Agility: 0,
+      // Step 2
 
-          Tackle: 0,
-          Strength: 0,
-          Positioning: 0,
-          Communication: 0,
-          Ariel_Ability: 0,
-
-          Vision: 0,
-          Crossing: 0,
-          Fitness: 0,
-
-          Shooting: 0,
-          Ball_Control: 0,
-          Dribbling: 0,
-          First_Touch: 0,
-          Passing: 0,
-          Heading: 0,
-        },
-
-        // Step 4
-        CurrentClubName: "",
-        CurrentClubFrom: null,
-        CurrentClubTo: null,
-        CurrentClubsAchievements: "",
-        Clubs: [
-          {
-            ClubName: "",
-            From: null,
-            To: null,
-            Achievements: "",
-          },
-        ],
-        ClubName: "",
-        From: null,
-        To: null,
-
-        // Step 5
-        MobileNumber: "",
-        AlternateMobileNumber: "",
-        Email: "",
-        ReferencedCoach: "",
-        Ambition: "",
-      },
-
-      age: 0,
-      players: [],
-      skillsSet: [],
+      // Step 3
+      mobile: "",
+      alternateMobile: "",
+      emailID: "",
+      coachReference: "",
+      ambition: "",
 
       // Step 4
+      currentClub: "",
+      clubStartDate: null,
+      clubEndDate: null,
+      playerAchivements: "",
+      prevClubs: [],
+      ClubName: "",
+      From: null,
+      To: null,
 
+      // Step 5
       playerAbilities: [],
+      playerabilityVal: {
+        Catching: 0,
+        Punching: 0,
+        Throwing: 0,
+        Reflexes: 0,
+        Distribution: 0,
+        Center_Defender: 0,
+        Right_Back: 0,
+        Left_Back: 0,
+        Agiity: 0,
+
+        Tackle: 0,
+        Strength: 0,
+        Positioning: 0,
+        Communication: 0,
+        Ariel_Ability: 0,
+
+        Vision: 0,
+        Crossing: 0,
+        Fitness: 0,
+
+        Shooting: 0,
+        Ball_Control: 0,
+        Dribbling: 0,
+        First_Touch: 0,
+        Passing: 0,
+        heading: 0,
+      },
       errors: {},
     };
   }
 
   componentDidMount() {
     const user = {
-      email: "swap@test.com",
-      password: "swap1234",
+      email: "test@gmail.com",
+      password: "Deepak@123",
     };
+    // debugger;
     login(user).then((res) => {
-      debugger
-      getUserDetails().then((res) => {
-        if (res) {
-          // debugger
-          res.DateOfBirth = new Date(res.DateOfBirth);
-          for (let i = 0; i < res.Clubs.length; i++) {
-            if (res.Clubs[i].From !== null) {
-              res.Clubs[i].From = new Date(res.Clubs[i].From);
-            }
-            if (res.Clubs[i].To !== null) {
-              res.Clubs[i].To = new Date(res.Clubs[i].To);
-            }
+      // console.log(res);
+      if (res.userId) {
+        // debugger
+        getUserDetails().then((res) => {
+          if (res) {
+            this.setState({
+              userResponse: res,
+            });
+            console.log(this.state.userResponse);
           }
-          var obj = res.Ratings;
-
-          Object.keys(obj).forEach(function (key) {
-            if (obj[key] === null) {
-              obj[key] = 0;
-            }
-          });
-
-          res.Ratings = obj;
-          console.log(res.Ratings);
-          if(res.Position === "string" || res.Position === ""){
-            res.Position = 'defaultPlayer'
-          }
-
-          if(res.Role === "string" || res.Role === ""){
-            res.Role = 'default0'
-          }
-
-          if(res.Foot === "string" || res.Foot === ""){
-            res.Foot = 'default'
-          }
-
-          this.setState({
-            userResponse: res,
-            isUserRegisterd : true
-          });
-        }
-      });
+        });
+      }
     });
 
     this.setState({
       players: [
         {
           name: "Goal Keeper",
-          playerskills: ["Goal Keeper"],
+          skills: ["Goal Keeper"],
           techAbilities: [
             "Catching",
             "Punching",
             "Throwing",
             "Reflexes",
             "Distribution",
-            "Agility",
+            "Agiity",
           ],
         },
         {
           name: "Defender",
-          playerskills: ["Center_Defender", "Right_Back", "Left_Back"],
+          skills: ["Center_Defender", "Right_Back", "Left_Back"],
           techAbilities: [
             "Tackle",
             "Strength",
@@ -184,7 +146,7 @@ class RegistrationSteps extends PureComponent {
         },
         {
           name: "Mid Fielder",
-          playerskills: [
+          skills: [
             "Center Attacking Mid-fielder(CAM)",
             "Center Defending Mid-fielder(CDM)",
             "Right Mid-Fielder",
@@ -203,18 +165,23 @@ class RegistrationSteps extends PureComponent {
         },
         {
           name: "Striker",
-          playerskills: ["Center Forward", "Second Striker"],
+          skills: ["Center Forward", "Second Striker"],
           techAbilities: [
             "Shooting",
             "Ball_Control",
             "Dribbling",
             "First_Touch",
             "Passing",
-            "Heading",
+            "heading",
           ],
         },
       ],
     });
+
+    // const players = this.state.userResponse.players
+    // this.setState({
+    //   players : players
+    // })
   }
 
   addPreviousClub = async (e) => {
@@ -223,40 +190,27 @@ class RegistrationSteps extends PureComponent {
       ClubName: "",
       From: null,
       To: null,
-      Achievements: "",
     };
-    const error = AddClubValidation(this.state.userResponse);
+    const error = AddClubValidation(this.state);
 
     if (error.rowSucess) {
-      let Clubs = [...this.state.userResponse.Clubs, obj];
-      this.state.userResponse.Clubs = Clubs;
-      this.setState({
-        Clubs,
-      });
+      this.setState({ prevClubs: [...this.state.prevClubs, obj] });
     }
   };
 
   handlePrevStartDatePicker = (i) => (date) => {
-    let Clubs = [...this.state.userResponse.Clubs];
-    Clubs[i].From = date;
+    let prevClubs = [...this.state.prevClubs];
+    prevClubs[i].From = date;
     this.setState({
-      Clubs,
+      prevClubs,
     });
   };
 
   handlePrevEndDatePicker = (i) => (date) => {
-    let Clubs = [...this.state.userResponse.Clubs];
-    Clubs[i].To = date;
+    let prevClubs = [...this.state.prevClubs];
+    prevClubs[i].To = date;
     this.setState({
-      Clubs,
-    });
-  };
-
-  handleAchievementsChange = (i) => async (e) => {
-    let Clubs = [...this.state.userResponse.Clubs];
-    Clubs[i].Achievements = e.target.value;
-    this.setState({
-      Clubs,
+      prevClubs,
     });
   };
 
@@ -303,66 +257,58 @@ class RegistrationSteps extends PureComponent {
   };
 
   handleChange = (input) => (e) => {
-    const userResponse = { ...this.state.userResponse };
-    userResponse[input] = e.target.value;
-    this.setState({ userResponse });
+    this.setState({ [input]: e.target.value });
   };
 
   handleChangeMobile = (input) => async (e) => {
-    const userResponse = { ...this.state.userResponse };
-    userResponse[input] = e.target.value;
-    this.setState({ userResponse });
-  };
-
-  handleDatePicker = (input) => async (date) => {
-    const userResponse = { ...this.state.userResponse };
-    userResponse[input] = date;
-
-    await this.setState({ userResponse });
-    console.log(this.state.userResponse.DateOfBirth);
-
-    if (input === "DateOfBirth") {
-      if (this.state.userResponse.DateOfBirth !== null) {
-        var today = new Date();
-        var birthDate = new Date(this.state.userResponse.DateOfBirth);
-        var age_now = today.getFullYear() - birthDate.getFullYear();
-        this.setState({
-          age: age_now,
-        });
-      }
+    const re = /^[0-9\b]+$/;
+    if (re.test(e.target.value)) {
+      await this.setState({ [input]: e.target.value });
     }
   };
 
+  handleDatePicker = (input) => async (date) => {
+    await this.setState({
+      [input]: date,
+    });
+    // if (input === "DateOfBith") {
+    //   if (this.state.DateOfBith !== null) {
+    //     await this.setState({
+    //       age: new Date().getFullYear() - this.state.DateOfBith.getFullYear(),
+    //     });
+    //   }
+    // }
+  };
+
   handlePlayerPosition = (input) => (e) => {
-    const userResponse = { ...this.state.userResponse };
-    userResponse[input] = e.target.value;
-    this.setState({ userResponse });
+    this.setState({
+      [input]: e.target.value,
+    });
   };
 
   handleSliderChange = async (field, val) => {
-    let fields = this.state.userResponse.Ratings;
+    let fields = this.state.playerabilityVal;
     fields[field] = val;
     await this.setState({ fields });
     this.forceUpdate();
   };
 
   handleText = (i) => (e) => {
-    let Clubs = [...this.state.userResponse.Clubs];
-    Clubs[i].ClubName = e.target.value;
+    let prevClubs = [...this.state.prevClubs];
+    prevClubs[i].ClubName = e.target.value;
     this.setState({
-      Clubs,
+      prevClubs,
     });
   };
 
   handleRemoveClub = (i) => async (e) => {
     e.preventDefault();
-    let Clubs = [
-      ...this.state.userResponse.Clubs.slice(i + 1),
-      ...this.state.userResponse.Clubs.slice(0, i),
+    let prevClubs = [
+      ...this.state.prevClubs.slice(0, i),
+      ...this.state.prevClubs.slice(i + 1),
     ];
-    this.state.userResponse.Clubs = Clubs;
     await this.setState({
-      Clubs,
+      prevClubs,
     });
   };
 
@@ -378,7 +324,17 @@ class RegistrationSteps extends PureComponent {
 
     toastr.options = { positionClass: "toast-top-center" };
 
-    
+    if (values.userResponse.selectedPlayer !== "defaultPlayer") {
+      values.userResponse.skillsSet = values.userResponse.players.find(
+        (cntry) => cntry.name === this.state.userResponse.selectedPlayer
+      ).skills;
+
+      values.userResponse.playerAbilities = values.userResponse.players.find(
+        (cntry) => cntry.name === this.state.userResponse.selectedPlayer
+      ).techAbilities;
+    }
+
+    console.log(values);
 
     var data = "";
     switch (currentStep) {
@@ -403,52 +359,51 @@ class RegistrationSteps extends PureComponent {
           />
         );
         break;
-      case 3:
-        data = (
-          <UserTechnicalAbilities
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            values={values}
-            handleSliderChange={this.handleSliderChange}
-          />
-        );
-        break;
-      case 4:
-        data = (
-          <UserClubExperiance
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            handleDatePicker={this.handleDatePicker}
-            addPreviousClub={this.addPreviousClub}
-            handleText={this.handleText}
-            handleRemoveClub={this.handleRemoveClub}
-            handlePrevStartDatePicker={this.handlePrevStartDatePicker}
-            handlePrevEndDatePicker={this.handlePrevEndDatePicker}
-            handleAchievementsChange={this.handleAchievementsChange}
-            values={values}
-          />
-        );
-        break;
-      case 5:
-        data = (
-          <UserContactDetails
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            handleChangeMobile={this.handleChangeMobile}
-            values={values}
-          />
-        );
-        break;
-      default:
-        return (
-          <UserFinalForm
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            values={values}
-          />
-        );
+      // case 3:
+      //   data = (
+      //     <UserTechnicalAbilities
+      //       nextStep={this.nextStep}
+      //       prevStep={this.prevStep}
+      //       values={values}
+      //       handleSliderChange={this.handleSliderChange}
+      //     />
+      //   );
+      //   break;
+      // case 4:
+      //   data = (
+      //     <UserClubExperiance
+      //       nextStep={this.nextStep}
+      //       prevStep={this.prevStep}
+      //       handleChange={this.handleChange}
+      //       handleDatePicker={this.handleDatePicker}
+      //       addPreviousClub={this.addPreviousClub}
+      //       handleText={this.handleText}
+      //       handleRemoveClub={this.handleRemoveClub}
+      //       handlePrevStartDatePicker={this.handlePrevStartDatePicker}
+      //       handlePrevEndDatePicker={this.handlePrevEndDatePicker}
+      //       values={values}
+      //     />
+      //   );
+      //   break;
+      // case 5:
+      //   data = (
+      //     <UserContactDetails
+      //       nextStep={this.nextStep}
+      //       prevStep={this.prevStep}
+      //       handleChange={this.handleChange}
+      //       handleChangeMobile={this.handleChangeMobile}
+      //       values={values}
+      //     />
+      //   );
+      //   break;
+      // default:
+      //   return (
+      //     <UserFinalForm
+      //       nextStep={this.nextStep}
+      //       prevStep={this.prevStep}
+      //       values={values}
+      //     />
+      //   );
     }
 
     return (

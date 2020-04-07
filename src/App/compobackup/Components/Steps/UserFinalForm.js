@@ -4,22 +4,15 @@ import Slider from "react-rangeslider";
 import moment from "moment";
 
 function UserFinalForm({ values, nextStep, prevStep }) {
-  const handleContinue = (evt) => {
+  const handleContinue = evt => {
     evt.preventDefault();
     nextStep(6);
   };
 
-  const handleBack = (evt) => {
+  const handleBack = evt => {
     evt.preventDefault();
-    prevStep(5);
+    prevStep(4);
   };
-
-  if (values.userResponse.Position !== "defaultPlayer") {
-    values.playerAbilities = values.players.find(
-      cntry => cntry.name === values.userResponse.Position
-    ).techAbilities;
-  }
-  const finalValues = values.userResponse;
   return (
     <>
       <div className="player_information_form">
@@ -42,27 +35,21 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Firstname</p>
-                      <p className="reviewData--value">
-                        {finalValues.FirstName}
-                      </p>
+                      <p className="reviewData--value">{values.FirstName}</p>
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Lastname</p>
-                      <p className="reviewData--value">
-                        {finalValues.LastName}
-                      </p>
+                      <p className="reviewData--value">{values.LastName}</p>
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Nationality</p>
-                      <p className="reviewData--value">
-                        {finalValues.Nationality}
-                      </p>
+                      <p className="reviewData--value">{values.Nationality}</p>
                     </div>
                   </div>
 
@@ -70,7 +57,7 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                     <div className="reviewData">
                       <p className="reviewData--header">Date of Birth</p>
                       <p className="reviewData--value">
-                        {moment(finalValues.DateOfBirth).format("DD-MM-YYYY")}
+                        {moment(values.DateOfBith).format("DD-MM-YYYY")}
                       </p>
                     </div>
                   </div>
@@ -85,14 +72,14 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Height</p>
-                      <p className="reviewData--value">{finalValues.Height}</p>
+                      <p className="reviewData--value">{values.Height}</p>
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Weight</p>
-                      <p className="reviewData--value">{finalValues.Weight}</p>
+                      <p className="reviewData--value">{values.Weight}</p>
                     </div>
                   </div>
                 </div>
@@ -105,7 +92,7 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                     <div className="reviewData">
                       <p className="reviewData--header">Player Position</p>
                       <p className="reviewData--value">
-                        {finalValues.Position}
+                        {values.selectedPlayer}
                       </p>
                     </div>
                   </div>
@@ -113,14 +100,16 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Specific Role</p>
-                      <p className="reviewData--value">{finalValues.Role}</p>
+                      <p className="reviewData--value">
+                        {values.selectedSkills}
+                      </p>
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Player Foot</p>
-                      <p className="reviewData--value">{finalValues.Foot}</p>
+                      <p className="reviewData--value">{values.playerFoot}</p>
                     </div>
                   </div>
 
@@ -128,10 +117,10 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                     <div className="reviewData">
                       <p className="reviewData--header">Player Agent</p>
                       <p className="reviewData--value">
-                        {finalValues.Agent === "" ? (
+                        {values.playerAgent === "" ? (
                           "none"
                         ) : (
-                          <span>{finalValues.Agent}</span>
+                          <span>{values.playerAgent}</span>
                         )}
                       </p>
                     </div>
@@ -143,10 +132,10 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                         Skills / Specialities
                       </p>
                       <p className="reviewData--value">
-                        {finalValues.Skills === "" ? (
+                        {values.playerskills === "" ? (
                           "none"
                         ) : (
-                          <span>{finalValues.Skills}</span>
+                          <span>{values.playerskills}</span>
                         )}
                       </p>
                     </div>
@@ -157,24 +146,26 @@ function UserFinalForm({ values, nextStep, prevStep }) {
               <>
                 <h1 className="FinalReviewHeader">Technical Abilities</h1>
                 <div className="row FinalReviewHeaderRow">
-                {values.playerAbilities.map((e, key) => {
+                  {values.playerAbilities.map((e, key) => {
                     return (
                       <div className="col-md-4" key={key}>
                         <div className="reviewData">
-                          <p className="reviewData--header">{e}</p>
+                          <p className="reviewData--header">
+                            {e}
+                          </p>
                           <div className="slider">
                             <Slider
                               min={0}
                               max={5}
                               disabled
-                              value={values.userResponse.Ratings[e]}
+                              value={values.playerabilityVal[e]}
                             />
                           </div>
                           <p
                             className="reviewData--value"
                             style={{ textAlign: "center" }}
                           >
-                            {values.userResponse.Ratings[e]}
+                            {values.playerabilityVal[e]}
                           </p>
                         </div>
                       </div>
@@ -190,69 +181,75 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                     <div className="col-md-4">
                       <div className="reviewData">
                         <p className="reviewData--header">
-                          Previously Played Clubs
+                          Currently Playing With Any Club
+                        </p>
+                        <p className="reviewData--value">
+                          {values.currentClub === ""
+                            ? "Not Assoiciated with any Club"
+                            : values.currentClub}
                         </p>
                       </div>
                     </div>
 
-                    <div className="col-md-2">
+                    <div className="col-md-4">
                       <div className="reviewData">
                         <p className="reviewData--header">From Date</p>
+                        <p className="reviewData--value">
+                          {values.clubStartDate !== null
+                            ? moment(values.clubStartDate).format("DD-MM-YYYY")
+                            : "-"}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="col-md-2">
-                      <div className="reviewData">
-                        <p className="reviewData--header">To Date</p>
-                      </div>
-                    </div>
                     <div className="col-md-4">
                       <div className="reviewData">
-                        <p className="reviewData--header">Achievements</p>
+                        <p className="reviewData--header">To Date</p>
+                        <p className="reviewData--value">
+                          {values.clubEndDate !== null
+                            ? moment(values.clubEndDate).format("DD-MM-YYYY")
+                            : "-"}
+                        </p>
                       </div>
                     </div>
                   </div>
                 </>
 
-                {finalValues.Clubs.length > 0 ? (
+                {values.prevClubs.length > 0 ? (
                   <div className="PrevClubData">
-                    {finalValues.Clubs.map((e, key) => {
+                    <div className="row ">
+                      <div className="col-md-4">
+                        <div className="reviewData">
+                          <p className="reviewData--header">
+                            Previously Played Clubs
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {values.prevClubs.map((e, key) => {
                       return (
                         <div className="row" key={key}>
                           <div className="col-md-4">
                             <div className="reviewData">
                               <p className="reviewData--value">
-                                {e.ClubName === ""
-                                  ? "Not Associated with any club"
-                                  : e.ClubName}
+                                {e.ClubName}
                               </p>
                             </div>
                           </div>
-                          <div className="col-md-2">
-                            <div className="reviewData">
-                              <p className="reviewData--value">
-                                {e.From === null
-                                  ? "-"
-                                  : moment(e.From).format("DD-MM-YYYY")}
-                              </p>
-                            </div>
-                          </div>
-                          <div className="col-md-2">
-                            <div className="reviewData">
-                              <p className="reviewData--value">
-                                {e.To === null
-                                  ? "-"
-                                  : moment(e.To).format("DD-MM-YYYY")}
-                              </p>
-                            </div>
-                          </div>
-
                           <div className="col-md-4">
                             <div className="reviewData">
                               <p className="reviewData--value">
-                                {e.Achievements === ""
-                                  ? ""
-                                  : e.Achievements}
+                                {moment(e.From).format(
+                                  "DD-MM-YYYY"
+                                )}
+                              </p>
+                            </div>
+                          </div>
+                          <div className="col-md-4">
+                            <div className="reviewData">
+                              <p className="reviewData--value">
+                                {moment(e.prevClubEndDate).format("DD-MM-YYYY")}
                               </p>
                             </div>
                           </div>
@@ -269,27 +266,14 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Mobile Number</p>
-                      <p className="reviewData--value">
-                        {finalValues.MobileNumber}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-4">
-                    <div className="reviewData">
-                      <p className="reviewData--header">
-                        Alternate Mobile Number
-                      </p>
-                      <p className="reviewData--value">
-                        {finalValues.AlternateMobileNumber}
-                      </p>
+                      <p className="reviewData--value">{values.mobile}</p>
                     </div>
                   </div>
 
                   <div className="col-md-4">
                     <div className="reviewData">
                       <p className="reviewData--header">Email ID</p>
-                      <p className="reviewData--value">{finalValues.Email}</p>
+                      <p className="reviewData--value">{values.emailID}</p>
                     </div>
                   </div>
 
@@ -299,10 +283,10 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                         Reference of Any Coach
                       </p>
                       <p className="reviewData--value">
-                        {finalValues.ReferencedCoach === "" ? (
+                        {values.coachReference === "" ? (
                           "No"
                         ) : (
-                          <span>{finalValues.ReferencedCoach}</span>
+                          <span>{values.coachReference}</span>
                         )}
                       </p>
                     </div>
@@ -314,10 +298,10 @@ function UserFinalForm({ values, nextStep, prevStep }) {
                         Your Ambition & Motivation
                       </p>
                       <p className="reviewData--value">
-                        {finalValues.Ambition === "" ? (
+                        {values.ambition === "" ? (
                           "none"
                         ) : (
-                          <span>{finalValues.Ambition}</span>
+                          <span>{values.ambition}</span>
                         )}
                       </p>
                     </div>

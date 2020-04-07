@@ -19,14 +19,14 @@ function UserBasicDetails({
     e.preventDefault();
     
 
-    const error = UserBasicValidation({ values });
-    await setErrors(error.errors);
-    console.log(errors);
+    // const error = UserBasicValidation({ values });
+    // await setErrors(error.errors);
+    // console.log(errors);
 
-    if (error.count <= 0) {
-      toastr.success("Data Saved Successfully !!");
+    // if (error.count <= 0) {
+    //   toastr.success("Data Saved Successfully !!");
       nextStep(2);
-    }
+    // }
   };
 
   return (
@@ -84,17 +84,17 @@ function UserBasicDetails({
                     <label>Birth Date*</label>
                     <Datepicker
                       placeholderText="Click to select a date"
-                      onChange={handleDatePicker("DateOfBirth")}
-                      selected={values.userResponse.DateOfBirth}
+                      onChange={handleDatePicker("DateOfBith")}
+                      selected={values.DateOfBith}
                       className="u-full-width"
-                      dateFormat="yyyy-MM-dd"
+                      dateFormat="dd/MM/yyyy"
                       peekNextMonth
                       showMonthDropdown
                       showYearDropdown
                       dropdownMode="select"
                     />
-                    {errors.DateOfBirth ? (
-                      <p className="inputError">{errors.DateOfBirth}</p>
+                    {errors.DateOfBith ? (
+                      <p className="inputError">{errors.DateOfBith}</p>
                     ) : null}
                   </div>
                 </div>
@@ -137,7 +137,7 @@ function UserBasicDetails({
                         <option value="brazil">Brazil</option>
                       </select>
                       {errors.Nationality ? (
-                        <p className="inputError">{errors.Nationality}</p>
+                        <p className="inputError">{errors.userResponse.Nationality}</p>
                       ) : null}
                     </div>
                   </div>
@@ -173,7 +173,7 @@ function UserBasicDetails({
                       type="text"
                       onChange={handleChange("Weight")}
                       defaultValue={values.userResponse.Weight}
-                      maxLength={3}
+                      maxLength={2}
                     />
                     {errors.Weight ? (
                       <p className="inputError">{errors.Weight}</p>
