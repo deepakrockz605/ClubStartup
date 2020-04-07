@@ -4,7 +4,7 @@ import { Button } from "semantic-ui-react";
 // import "toastr/build/toastr.min.css";
 import { UserContactValidation } from "./Validation";
 
-import { userRegister , userUpdate } from "../../../services/productService";
+import { BasicDetails } from "../../../services/productService";
 
 function UserContactDetails({
   values,
@@ -14,7 +14,7 @@ function UserContactDetails({
   prevStep,
 }) {
   const [errors, setErrors] = useState([]);
-console.log(values)
+
   const handleContinue = (e) => {
     e.preventDefault();
 
@@ -23,17 +23,13 @@ console.log(values)
     // console.log(error);
 
     if (error.count <= 0) {
-      const userDetails = values.userResponse;
-      if(values.isUserRegisterd){
-        userUpdate(userDetails).then((res) => {
-          console.log(res);
-        });
-      }
-      else{
-        userRegister(userDetails).then((res) => {
-          console.log(res);
-        });
-      }
+      const userDetails = values;
+      const data = userDetails.prevClubs;
+      console.log(data)
+      BasicDetails(userDetails).then((res) => {
+        console.log(res);
+      });
+      // toastr.success("Data Saved Successfully !!");
       nextStep(6);
     }
   };
@@ -64,14 +60,14 @@ console.log(values)
                       className="u-full-width"
                       placeholder="Please Enter Mobile Number"
                       type="text"
-                      onChange={handleChangeMobile("MobileNumber")}
-                      defaultValue={values.userResponse.MobileNumber}
+                      onChange={handleChangeMobile("mobile")}
+                      defaultValue={values.mobile}
                       minLength={10}
                       maxLength={10}
                       required
                     />
-                    {errors.MobileNumber ? (
-                      <p className="inputError">{errors.MobileNumber}</p>
+                    {errors.mobile ? (
+                      <p className="inputError">{errors.mobile}</p>
                     ) : null}
                   </div>
                 </div>
@@ -84,14 +80,14 @@ console.log(values)
                       className="u-full-width"
                       placeholder="Please Enter Alternate Mobile Number"
                       type="text"
-                      onChange={handleChangeMobile("AlternateMobileNumber")}
-                      defaultValue={values.userResponse.AlternateMobileNumber}
+                      onChange={handleChangeMobile("alternateMobile")}
+                      defaultValue={values.alternateMobile}
                       minLength={10}
                       maxLength={10}
                       required
                     />
-                    {errors.AlternateMobileNumber ? (
-                      <p className="inputError">{errors.AlternateMobileNumber}</p>
+                    {errors.alternateMobile ? (
+                      <p className="inputError">{errors.alternateMobile}</p>
                     ) : null}
                   </div>
                 </div>
@@ -105,12 +101,12 @@ console.log(values)
                       className="u-full-width"
                       placeholder="Please Enter EmailID"
                       type="text"
-                      onChange={handleChange("Email")}
-                      defaultValue={values.userResponse.Email}
+                      onChange={handleChange("emailID")}
+                      defaultValue={values.emailID}
                       required
                     />
-                    {errors.Email ? (
-                      <p className="inputError">{errors.Email}</p>
+                    {errors.emailID ? (
+                      <p className="inputError">{errors.emailID}</p>
                     ) : null}
                   </div>
                 </div>
@@ -122,8 +118,8 @@ console.log(values)
                       className="u-full-width"
                       placeholder="Reference of Any Coach"
                       type="text"
-                      onChange={handleChange("ReferencedCoach")}
-                      defaultValue={values.userResponse.ReferencedCoach}
+                      onChange={handleChange("coachReference")}
+                      defaultValue={values.coachReference}
                       required
                     />
                   </div>
@@ -136,8 +132,8 @@ console.log(values)
                     <label>Your Ambition & Motivation</label>
                     <textarea
                       placeholder="Please add the skills"
-                      onChange={handleChange("Ambition")}
-                      defaultValue={values.userResponse.Ambition}
+                      onChange={handleChange("ambition")}
+                      defaultValue={values.ambition}
                       style={{ width: "100%", height: "60px" }}
                     />
                   </div>

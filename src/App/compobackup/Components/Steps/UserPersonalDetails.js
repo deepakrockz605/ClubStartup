@@ -15,25 +15,19 @@ function UserPersonalDetails({
 
   const handleContinue = async e => {
     e.preventDefault();
-    const error = UserPersonalValidation({ values });
-    await setErrors(error.errors);
+    // const error = UserPersonalValidation({ values });
+    // await setErrors(error.errors);
 
-    if (error.count <= 0) {
-      toastr.success("Data Saved Successfully !!");
-      nextStep(3);
-    }
+    // if (error.count <= 0) {
+    //   toastr.success("Data Saved Successfully !!");
+    //   nextStep(3);
+    // }
   };
 
   const handleBack = evt => {
     evt.preventDefault();
     prevStep(1);
   };
-
-  if (values.userResponse.Position !== "defaultPlayer") {
-    values.skillsSet = values.players.find(
-      cntry => cntry.name === values.userResponse.Position
-    ).playerskills;
-  }
 
   return (
     <div className="player_information_form">
@@ -57,12 +51,12 @@ function UserPersonalDetails({
                       <i className="right"></i>
                     </span>
                     <select
-                      value={values.userResponse.Position}
-                      onChange={handlePlayerPosition("Position")}
+                      value={values.userResponse.selectedPlayer}
+                      onChange={handlePlayerPosition("selectedPlayer")}
                       className="browser-default custom-select"
                     >
                       <option value="defaultPlayer">--Player Position--</option>
-                      {values.players.map((e, key) => {
+                      {values.userResponse.players.map((e, key) => {
                         return (
                           <option value={e.name} key={key}>
                             {e.name}
@@ -70,9 +64,9 @@ function UserPersonalDetails({
                         );
                       })}
                     </select>
-                    {errors.Position ? (
-                      <p className="inputError">{errors.Position}</p>
-                    ) : null}
+                    {/* {errors.selectedPlayer ? (
+                      <p className="inputError">{errors.selectedPlayer}</p>
+                    ) : null} */}
                   </div>
                 </div>
               </div>
@@ -86,12 +80,12 @@ function UserPersonalDetails({
                       <i className="right"></i>
                     </span>
                     <select
-                      value={values.userResponse.Role}
-                      onChange={handlePlayerPosition("Role")}
+                      value={values.userResponse.selectedSkills}
+                      onChange={handlePlayerPosition("selectedSkills")}
                       className="browser-default custom-select"
                     >
                       <option value="default0">--Player Role--</option>
-                      {values.skillsSet.map((e, key) => {
+                      {values.userResponse.skillsSet.map((e, key) => {
                         return (
                           <option value={e} key={key}>
                             {e}
@@ -99,9 +93,9 @@ function UserPersonalDetails({
                         );
                       })}
                     </select>
-                    {errors.Role ? (
-                      <p className="inputError">{errors.Role}</p>
-                    ) : null}
+                    {/* {errors.selectedSkills ? (
+                      <p className="inputError">{errors.selectedSkills}</p>
+                    ) : null} */}
                   </div>
                 </div>
               </div>
@@ -116,8 +110,8 @@ function UserPersonalDetails({
                       <i className="right"></i>
                     </span>
                     <select
-                      value={values.userResponse.Foot}
-                      onChange={handlePlayerPosition("Foot")}
+                      value={values.userResponse.playerFoot}
+                      onChange={handlePlayerPosition("playerFoot")}
                       className="browser-default custom-select"
                     >
                       <option defaultValue value="default">
@@ -126,9 +120,9 @@ function UserPersonalDetails({
                       <option value="left">Left</option>
                       <option value="right">Right</option>
                     </select>
-                    {errors.Foot ? (
-                      <p className="inputError">{errors.Foot}</p>
-                    ) : null}
+                    {/* {errors.playerFoot ? (
+                      <p className="inputError">{errors.playerFoot}</p>
+                    ) : null} */}
                   </div>
                 </div>
               </div>
@@ -140,8 +134,8 @@ function UserPersonalDetails({
                     className="u-full-width"
                     placeholder="Agent Name"
                     type="text"
-                    onChange={handleChange("Agent")}
-                    defaultValue={values.userResponse.Agent}
+                    onChange={handleChange("playerAgent")}
+                    defaultValue={values.userResponse.playerAgent}
                     autoFocus
                     required
                   />
@@ -157,8 +151,8 @@ function UserPersonalDetails({
                     className=""
                     placeholder="Please add Skills / Specialities"
                     type="text"
-                    onChange={handleChange("Skills")}
-                    defaultValue={values.userResponse.Skills}
+                    onChange={handleChange("playerskills")}
+                    defaultValue={values.userResponse.playerskills}
                     style={{ width: "100%", height: "60px" }}
                     required
                   />

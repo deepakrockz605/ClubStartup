@@ -16,11 +16,9 @@ function UserClubExperiance({
   addPreviousClub,
   handlePrevStartDatePicker,
   handlePrevEndDatePicker,
-  handleAchievementsChange,
   nextStep,
   prevStep,
 }) {
-  // debugger
   const [errors, setErrors] = useState([]);
 
   const handleContinue = (e) => {
@@ -53,7 +51,7 @@ function UserClubExperiance({
             </div>
 
             <div className="player_information_box">
-              {/* <div className="row row_CurrentClubBox">
+              <div className="row row_CurrentClubBox">
                 <div className="col-md-12">
                   <div className="registration_fields">
                     <label>Currently Playing With Any Club</label>
@@ -61,11 +59,11 @@ function UserClubExperiance({
                       className="u-full-width"
                       placeholder="Please Mention the Club Name"
                       type="text"
-                      onChange={handleChange("CurrentClubName")}
-                      defaultValue={values.userResponse.CurrentClubName}
+                      onChange={handleChange("currentClub")}
+                      defaultValue={values.currentClub}
                     />
-                    {errors.CurrentClubName ? (
-                      <p className="inputError">{errors.CurrentClubName}</p>
+                    {errors.currentClub ? (
+                      <p className="inputError">{errors.currentClub}</p>
                     ) : null}
                   </div>
                 </div>
@@ -75,8 +73,8 @@ function UserClubExperiance({
                     <label>Playing From</label>
                     <Datepicker
                       placeholderText="Click to select a date"
-                      onChange={handleDatePicker("CurrentClubFrom")}
-                      selected={values.userResponse.CurrentClubFrom}
+                      onChange={handleDatePicker("clubStartDate")}
+                      selected={values.clubStartDate}
                       className="u-full-width"
                       dateFormat="dd/MM/yyyy"
                       peekNextMonth
@@ -84,8 +82,8 @@ function UserClubExperiance({
                       showYearDropdown
                       dropdownMode="select"
                     />
-                    {errors.CurrentClubFrom ? (
-                      <p className="inputError">{errors.CurrentClubFrom}</p>
+                    {errors.clubStartDate ? (
+                      <p className="inputError">{errors.clubStartDate}</p>
                     ) : null}
                   </div>
                 </div>
@@ -95,8 +93,8 @@ function UserClubExperiance({
                     <label>Played Till</label>
                     <Datepicker
                       placeholderText="Click to select a date"
-                      onChange={handleDatePicker("CurrentClubTo")}
-                      selected={values.userResponse.CurrentClubTo}
+                      onChange={handleDatePicker("clubEndDate")}
+                      selected={values.clubEndDate}
                       className="u-full-width"
                       dateFormat="dd/MM/yyyy"
                       peekNextMonth
@@ -104,8 +102,8 @@ function UserClubExperiance({
                       showYearDropdown
                       dropdownMode="select"
                     />
-                    {errors.CurrentClubTo ? (
-                      <p className="inputError">{errors.CurrentClubTo}</p>
+                    {errors.clubEndDate ? (
+                      <p className="inputError">{errors.clubEndDate}</p>
                     ) : null}
                   </div>
                 </div>
@@ -117,17 +115,17 @@ function UserClubExperiance({
                       className=""
                       placeholder="Please add any Achievements if you had"
                       type="text"
-                      onChange={handleChange("CurrentClubsAchievements")}
-                      defaultValue={values.userResponse.CurrentClubsAchievements}
+                      onChange={handleChange("playerAchivements")}
+                      defaultValue={values.playerAchivements}
                       style={{ width: "100%", height: "60px" }}
                       required
                     />
                   </div>
                 </div>
-              </div> */}
+              </div>
 
               <>
-                {values.userResponse.Clubs.map((question, index) => (
+                {values.prevClubs.map((question, index) => (
                   <div
                     className="row clubPrevRow row_CurrentClubBox clubPrevRow_updated"
                     key={index}
@@ -135,27 +133,8 @@ function UserClubExperiance({
                   >
                     <div className="col-md-12">
                       <div className="registration_fields">
-                      {
-                            index === 0 ? 
-                            <label>
-                          
-                            Currently Playing Club
-                            <span
-                              className="previousClub"
-                              style={{
-                                marginLeft: "20px",
-                                cursor: "pointer",
-                                textDecoration: "underline",
-                                fontSize: "12px",
-                              }}
-                            >
-                              
-                            </span>
-                          </label>
-                          :
-                          <label>
-                          
-                          Previously Played Club
+                        <label>
+                          Previously Played Club*
                           <span
                             onClick={handleRemoveClub(index)}
                             className="previousClub"
@@ -169,8 +148,6 @@ function UserClubExperiance({
                             <i className="fa fa-trash" aria-hidden="true"></i>
                           </span>
                         </label>
-                      }
-
 
                         <input
                           type="text"
@@ -223,8 +200,8 @@ function UserClubExperiance({
                           className=""
                           placeholder="Please add any Achievements if you had"
                           type="text"
-                          onChange={handleAchievementsChange(index)}
-                          defaultValue={question.Achievements}
+                          onChange={handleChange("playerAchivements")}
+                          defaultValue={values.playerskills}
                           style={{ width: "100%", height: "60px" }}
                           required
                         />

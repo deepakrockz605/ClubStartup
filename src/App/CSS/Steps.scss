@@ -1,8 +1,13 @@
+// #d64242
+
+// background-image: linear-gradient(to bottom,#654a86,#534292);
+// background-color: #534292;
+
 /* CS FOR USER REGISTRATION FORM STARTS HERE */
 
 .player_information_form{padding: 10px 0 30px;}
 .player_basic_information {box-shadow: 0 6px 3px -9px rgba(0, 0, 0, 0.16), 0 1px 3px 0px rgba(0, 0, 0, 0.23);background: #fff;}
-.registration_fields{display: flex;flex-direction: column;padding: 10px 0 15px;}
+.registration_fields{display: flex;flex-direction: column;padding: 10px 0 25px;}
 .registration_fields label{margin: 0;font-size: 14px;color: #e44545;padding-bottom: 5px;font-weight: 600;}
 .registration_fields .u-full-width{border: none;border-bottom: 1px solid #ccc;width: 100%;margin-bottom: 5px;}
 .registration_fields .u-full-width:focus{box-shadow: none;outline: none;transition: transform .5s ease;}
@@ -53,7 +58,6 @@
 /* CSS FOR RANGE SLIDER STARTS HERE */
 
 .rangeslider-horizontal {height: 6px !important;border-radius: 10px;}
-// .rangeslider-horizontal .rangeslider__fill{background: #e44545 !important;}
 .rangeslider-horizontal .rangeslider__handle:after{content: none !important;}
 .rangeslider-horizontal .rangeslider__handle{width:20px !important;height:20px !important;outline:none !important;}
 .rangeslider{margin:0 !important;}
@@ -97,41 +101,19 @@ h1.FinalReviewHeader::after{content:"";position:absolute;width:200px;height:2px;
 .PrevClubData .reviewData {padding: 2px 0;}
 .FinalReviewHeaderClubRow{ padding-bottom: 20px;}
 .noteBox{font-size: 12px;color: red;font-weight: 600;padding-left: 15px;}
-
-
-.inputError{
-    position: absolute;
-    bottom: 0px;
-    color: red;
-    font-size: 12px;
-}
+.inputError {position: absolute;bottom: -3px;color: #fff;background: #d64242;font-size: 12px;border-radius: 5px;padding: 4px 10px;transition: .3s all;}
 .browser-default.custom-select{height: auto !important;}
-.customDropDownArrow .inputError{    bottom: -20px;}
+.customDropDownArrow .inputError{bottom: -33px;transition: .3s all;}
 .registration_fields_error{padding: 10px 0 25px;}
 .registration_fields_error label{margin-bottom: 15px;}
 .clubPrevRow_updated{position: relative;}
-// .clubPrevRow_updated::before{content: "";position: absolute;width: 100%;height: 1px;background: #ccc;}
-.row_CurrentClubBox{
-    box-shadow: 0 6px 3px -9px rgba(0, 0, 0, 0.16), 0 1px 3px 0px rgba(0, 0, 0, 0.23);
-    margin: 15px 0px;
-    padding: 5px;
-}
-.reviewData .rangeslider , .registration_fields .rangeslider {
-    margin: 0 !important;
-    background: #e6e5ea !important;
-}
-
+.row_CurrentClubBox{box-shadow: 0 6px 3px -9px rgba(0, 0, 0, 0.16), 0 1px 3px 0px rgba(0, 0, 0, 0.23);margin: 15px 0px;padding: 5px;}
+.reviewData .rangeslider , .registration_fields .rangeslider {margin: 0 !important;background: #e6e5ea !important;}
 .rangeslider-horizontal .rangeslider__fill{background-image: linear-gradient(to right, #b94a48 30%, #f1c40f 45%, #4bc67d 99%) !important;}
-
 .reviewData .slider{margin: 20px 0;}
 .mandatoryText{color: #e44545;font-weight: 700;font-size: 12px;text-align: right;padding: 10px 0;}
-
-
-
 .rangeslider-horizontal .rangeslider__handle{background: url('../Images/soccer.svg');width: 100px;height: 100px;}
-// .registration_Wrapper{background: url('../Images/Registration_Banner.jpg');background-size: cover;height: 100%;}
 .registration_Wrapper{background: #f2f3f8;}
-
 .registration_fieldsDatePicker .react-datepicker__current-month,.registration_fieldsDatePicker .react-datepicker-time__header, .registration_fieldsDatePicker .react-datepicker-year-header{display: none;}
 .registration_fieldsDatePicker .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before , .registration_fieldsDatePicker .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle , .registration_fieldsDatePicker  .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle{border: none;}
 .registration_fieldsDatePicker .react-datepicker__header{background-color: #ffffff;border-bottom: none;}
